@@ -1,0 +1,33 @@
+# Pi-hole regex filters for Smart-TV strict mode
+# Add via 'pihole --regex' or copy into /etc/pihole/regex.list
+
+(^|\.)service-ad[^.]*\.pluto\.tv$
+(^|\.)[^.]*\.pluto\.tv$
+(^|\.)[^.]*\.(?:lgappstv|lgtvsdp|lgsmartad)\.com$
+(^|\.)[^.]*\.lgtvcommon\.com$
+(^|\.)[^.]*\.(?:adservice|adserver|ads|tracking|analytics|telemetry|beacon|cdp|cdpsvc|cdpbeacon)\.samsung(?:[a-z]+)?(?:cloudsolution|acr|qbe|yosemite|ads|electronics)\.com$
+(^|\.)[^.]*\.(?:samsung(?:ad|cloudsolution|acr|qbe|yosemite|electronics)\.(?:com|net))$
+(^|\.)[^.]*\.(?:samsung(?:ingest|ingestion|musicid|notice|noticecdn|gamespromotion|targeted-config-test|prov|fkp|oempprd|vdterms)|ap?u|bpu|dpu|kpu|upu|zpu|xpu|ypu)\.samsungelectronics\.com$
+(^|\.)[^.]*\.(?:samsung(?:acr|cloudsolution|qbe|yosemite)\.net)$
+(^|\.)adnxs\.com$
+(^|\.)adsafeprotected\.com$
+(^|\.)adsninja\.ca$
+(^|\.)aic\.[^.]+\.lgtvcommon\.com$
+(^|\.)amazon-adsystem\.com$
+(^|\.)analytics\.[^.]+$
+(^|\.)analytics\.[^.]+\.com$
+(^|\.)beacon\.[^.]+$
+(^|\.)beacondb\.net$
+(^|\.)beacons\.[^.]+$
+(^|\.)doubleclick\.net$
+(^|\.)googleadservices\.com$
+(^|\.)googlesyndication\.com$
+(^|\.)mediatailor\.us-east-1\.amazonaws\.com$
+(^|\.)metrics\.[^.]+$
+(^|\.)scorecardresearch\.com$
+(^|\.)smaato\.net$
+(^|\.)springserve\.com$
+(^|\.)telemetry\.[^.]+$
+(^|\.)telemetry\.[^.]+\.com$
+(^|\.)track\.[^.]+$
+(^|\.)tracking\.[^.]+$
