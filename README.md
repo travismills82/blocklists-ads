@@ -2,37 +2,63 @@
 
 Centralized blocklist repository for Pi-hole.
 
-## Usage in Pi-hole
+## Combined master list
 
-Add these adlists:
+Use this URL as a Pi-hole adlist:
 
-- Combined master domain blocklist (exact domains only):
-  - https://raw.githubusercontent.com/travismills82/blocklists-ads/main/ads.txt
+- https://raw.githubusercontent.com/travismills82/blocklists-ads/main/ads.txt
 
-- Exact-host blocklist:
-  - https://raw.githubusercontent.com/travismills82/blocklists-ads/main/pihole/smart-tv-strict-blocklist.txt
+`ads.txt` is rebuilt automatically every 12 hours from the configured upstream sources plus the repository-local Smart TV exact-domain list.
 
-`ads.txt` contains normalized exact domains only and intentionally does not include Pi-hole regex filters.
+The generated list targets Pi-hole v6+ and may contain both:
 
-Regex entries are not imported through the regular adlist URL; add them separately:
+- normalized exact domains
+- simple Pi-hole-supported ABP DNS rules such as `||example.com^`
 
-- Raw regex blocklist:
-  - https://raw.githubusercontent.com/travismills82/blocklists-ads/main/pihole/smart-tv-strict-regex.txt
+Browser cosmetic rules, exception/allow rules, JavaScript filters, and the repository's Pi-hole regex file are intentionally not merged into `ads.txt`.
 
-To apply regex entries quickly:
+## Upstream sources
 
-```
-# For local Pi-hole shell access
-pihole --regexfile https://raw.githubusercontent.com/travismills82/blocklists-ads/main/pihole/smart-tv-strict-regex.txt
-```
+The source URLs are maintained in [`sources.txt`](sources.txt). The automated builder currently merges:
 
-If `--regexfile` is not available in your Pi-hole version, copy the file contents into `/etc/pihole/regex.list` and run:
+- StevenBlack hosts
+- Froggeric NoAppleAds DNS-relevant rules
+- OISD Big
+- abuse.ch URLhaus hostfile
+- Phishing Army Extended
+- HaGeZi Pro
+- HaGeZi Threat Intelligence Feed Medium
 
-```
-docker exec pihole pihole reloaddns
-```
+Each upstream project remains subject to its own license and terms of use.
 
-## Notes
+## Automatic updates
 
-- This is a strict Smart-TV-focused list with broader Pluto/Samsung/LG ad/telemetry coverage.
-- Domain entries were validated for your existing Pi-hole configuration.
+GitHub Actions runs `.github/workflows/update-blocklist.yml` every 12 hours and can also be started manually with **Run workflow**.
+
+The builder:
+
+1. downloads every configured source with retries
+2. parses hosts, plain-domain, wildcard, and DNS-oriented ABP formats
+3. ignores cosmetic/browser-only and allow rules
+4. merges `pihole/smart-tv-strict-blocklist.txt`
+5. normalizes and deduplicates domains
+6. removes exact/child rules already covered by a parent `||domain^` rule
+7. validates a minimum final rule count
+8. refuses to create an `ads.txt` approaching GitHub's normal 100 MiB single-file limit
+9. commits only when the generated list actually changes
+
+## Smart TV local rules
+
+The repository-local exact-host list is:
+
+- https://raw.githubusercontent.com/travismills82/blocklists-ads/main/pihole/smart-tv-strict-blocklist.txt
+
+Those exact entries are automatically included in the combined `ads.txt` build.
+
+## Regex rules
+
+Regex entries stay separate because they are Pi-hole rules rather than ordinary adlist entries:
+
+- https://raw.githubusercontent.com/travismills82/blocklists-ads/main/pihole/smart-tv-strict-regex.txt
+
+Keep those rules configured separately in Pi-hole. They are not inserted into `ads.txt`.
