@@ -1,11 +1,27 @@
 # Upstream sources merged into ads.txt
 # One URL per line. Comments and blank lines are ignored.
 
+# General / security sources
 https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
 https://raw.githubusercontent.com/froggeric/DNS-blocklists/main/NoAppleAds
 https://big.oisd.nl/
 https://urlhaus.abuse.ch/downloads/hostfile/
 https://phishing.army/download/phishing_army_blocklist_extended.txt
-https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/adblock/pro.txt
-https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/adblock/tif.medium.txt
 https://media.githubusercontent.com/media/zachlagden/Pi-hole-Optimized-Blocklists/main/lists/malicious.txt
+
+# HaGeZi DNS Blocklists mirror - canonical/superset Adblock-format feeds
+# Source tree: https://gitlab.com/hagezi/mirror/-/tree/main/dns-blocklists
+https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/adblock/ultimate.txt
+https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/adblock/tif.txt
+https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/adblock/anti.piracy.txt
+https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/adblock/blocklist-referral-native.txt
+https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/adblock/doh-vpn-proxy-bypass.txt
+https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/adblock/doh.txt
+https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/adblock/dyndns.txt
+https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/adblock/gambling.txt
+https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/adblock/hoster.txt
+https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/adblock/nosafesearch.txt
+https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/adblock/nsfw.txt
+https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/adblock/social.txt
+https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/adblock/spam-tlds-adblock-aggressive.txt
+https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/adblock/urlshortener.txt
