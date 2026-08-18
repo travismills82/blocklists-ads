@@ -8,3 +8,4 @@ https://urlhaus.abuse.ch/downloads/hostfile/
 https://phishing.army/download/phishing_army_blocklist_extended.txt
 https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/adblock/pro.txt
 https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/adblock/tif.medium.txt
+https://media.githubusercontent.com/media/zachlagden/Pi-hole-Optimized-Blocklists/main/lists/malicious.txt
