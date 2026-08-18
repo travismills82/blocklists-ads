@@ -1,0 +1,10 @@
+# Upstream sources merged into ads.txt
+# One URL per line. Comments and blank lines are ignored.
+
+https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+https://raw.githubusercontent.com/froggeric/DNS-blocklists/main/NoAppleAds
+https://big.oisd.nl/
+https://urlhaus.abuse.ch/downloads/hostfile/
+https://phishing.army/download/phishing_army_blocklist_extended.txt
+https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/adblock/pro.txt
+https://gitlab.com/hagezi/mirror/-/raw/main/dns-blocklists/adblock/tif.medium.txt
