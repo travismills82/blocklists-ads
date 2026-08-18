@@ -1,4 +1,6 @@
-# ads.txt (exported from current Pi-hole custom lists)
+# Combined Pi-hole ads list (single list)
+# Exact domains and regex filters from all configured block lists
+# Exact domains
 aax.amazon-adsystem.com
 ad-api.prd.pluto.tv
 ad.doubleclick.net
@@ -74,6 +76,7 @@ us-api.samsungyosemite.com
 us.ad.lgsmartad.com
 us.cdpbeacon.lgtvcommon.com
 us.cdpsvc.lgtvcommon.com
+us.homeprv.lgtvcommon.com
 us.ibs.lgappstv.com
 us.info.lgsmartad.com
 us.lgsmartad.com
@@ -86,13 +89,14 @@ vdterms.samsungcloudsolution.com
 vfw.amazon-adsystem.com
 vizio.adsmeasurement.com
 
-# Regex entries
+# Regex filters
 (^|\.)[^.]*\.(?:adservice|adserver|ads|tracking|analytics|telemetry|beacon|cdp|cdpsvc|cdpbeacon)\.samsung(?:[a-z]+)?(?:cloudsolution|acr|qbe|yosemite|ads|electronics)\.com$
 (^|\.)[^.]*\.(?:lgappstv|lgtvsdp|lgsmartad)\.com$
 (^|\.)[^.]*\.(?:samsung(?:acr|cloudsolution|qbe|yosemite)\.net)$
 (^|\.)[^.]*\.(?:samsung(?:ad|cloudsolution|acr|qbe|yosemite|electronics)\.(?:com|net))$
 (^|\.)[^.]*\.(?:samsung(?:ingest|ingestion|musicid|notice|noticecdn|gamespromotion|targeted-config-test|prov|fkp|oempprd|vdterms)|ap?u|bpu|dpu|kpu|upu|zpu|xpu|ypu)\.samsungelectronics\.com$
 (^|\.)[^.]*\.lgtvcommon\.com$
+(^|\.)[^.]*\.pluto\.tv$
 (^|\.)[a-z0-9-]+\.pluto\.tv$
 (^|\.)adnxs\.com$
 (^|\.)adsafeprotected\.com$
