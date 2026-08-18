@@ -1,0 +1,9 @@
+# Zach Lagden Pi-hole Optimized Malicious Blocklist
+# Upstream source (Git LFS, ~69 MB):
+# https://media.githubusercontent.com/media/zachlagden/Pi-hole-Optimized-Blocklists/main/lists/malicious.txt
+#
+# This repository intentionally does not mirror the full 69 MB file here because
+# doing so every 12 hours would rapidly bloat Git history. The scheduled builder
+# downloads the upstream file directly and merges its domains into /ads.txt.
+#
+# Use the upstream URL above directly if you want this source as a separate Pi-hole adlist.
