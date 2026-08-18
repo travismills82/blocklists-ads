@@ -1,0 +1,86 @@
+name: Update combined Pi-hole blocklist
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '37 0,12 * * *'
+      timezone: 'America/New_York'
+  push:
+    branches:
+      - main
+    paths:
+      - sources.txt
+      - scripts/build-blocklist.py
+      - pihole/smart-tv-strict-blocklist.txt
+      - .github/workflows/update-blocklist.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-combined-blocklist-main
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+
+      - name: Build combined blocklist
+        run: python scripts/build-blocklist.py
+
+      - name: Validate generated file
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          test -s ads.txt
+
+          size_bytes="$(stat -c '%s' ads.txt)"
+          rule_count="$(grep -Ev '^[[:space:]]*(#|$)' ads.txt | wc -l)"
+
+          echo "ads.txt size: ${size_bytes} bytes"
+          echo "ads.txt rules: ${rule_count}"
+
+          if (( size_bytes >= 99614720 )); then
+            echo "ads.txt is 95 MiB or larger; refusing to push near GitHub's 100 MiB file limit."
+            exit 1
+          fi
+
+          if (( rule_count < 100000 )); then
+            echo "Generated rule count is unexpectedly small; refusing to publish."
+            exit 1
+          fi
+
+          if grep -Eq '(^|[[:space:]])(0\.0\.0\.0|127\.0\.0\.1)[[:space:]]+' ads.txt; then
+            echo "Found an unexpected hosts-file IP prefix in ads.txt."
+            exit 1
+          fi
+
+      - name: Commit updated blocklist
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if git diff --quiet -- ads.txt; then
+            echo "No blocklist changes to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add ads.txt
+          git commit -m "chore: update combined Pi-hole blocklist"
+          git push origin HEAD:main
