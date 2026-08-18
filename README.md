@@ -6,8 +6,13 @@ Centralized blocklist repository for Pi-hole.
 
 Add these adlists:
 
+- Combined master domain blocklist (exact domains only):
+  - https://raw.githubusercontent.com/travismills82/blocklists-ads/main/ads.txt
+
 - Exact-host blocklist:
   - https://raw.githubusercontent.com/travismills82/blocklists-ads/main/pihole/smart-tv-strict-blocklist.txt
+
+`ads.txt` contains normalized exact domains only and intentionally does not include Pi-hole regex filters.
 
 Regex entries are not imported through the regular adlist URL; add them separately:
 
